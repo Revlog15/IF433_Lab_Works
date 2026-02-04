@@ -1,11 +1,15 @@
 package oop_126621_RevandAnrianPutra.week01
 fun main() {
     val name = "john Thor"
-    val score = 80
-    val grade = calculateGrade(score)
+    val score: Int? = 85
+
+
+    val grade = calculateGrade(score ?: 0)
+    println("Nilai kamu: ${score ?: "Tidak ada nilai"}")
     println("Grade kamu: $grade")
-    println("Nama:  $name  , Nilai: $score")
+
 }
+
     fun calculateGrade(score: Int): String =
         when (score) {
             in 90..100 -> "A"
