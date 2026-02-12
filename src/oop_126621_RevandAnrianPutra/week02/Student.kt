@@ -6,6 +6,8 @@ class Student(
     var major: String
 ) {
 
+    constructor(nim: String, name: String) : this(nim, name, "Non-Matriculated")
+
     init {
         if (nim.length != 10) {
             println("WARNING: NIM tidak valid (harus 10 digit)")
