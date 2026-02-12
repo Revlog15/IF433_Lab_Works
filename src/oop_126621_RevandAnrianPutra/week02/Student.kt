@@ -4,6 +4,7 @@ class Student(
     val nim: String,
     var name: String,
     var major: String
+    var gpa: Double = 0.0
 ) {
 
     constructor(nim: String, name: String) : this(nim, name, "Non-Matriculated")
