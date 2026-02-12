@@ -3,28 +3,42 @@ package oop_126621_RevandAnrianPutra.week02
 import java.util.Scanner
 
 fun main() {
+
     val scanner = Scanner(System.`in`)
 
-    println("Pilih jalur pendaftaran:")
-    println("1. Dengan jurusan")
-    println("2. Tanpa jurusan")
-    print("Pilihan: ")
-    val choice = scanner.nextLine().toInt()
-
-    print("Masukkan NIM: ")
-    val nim = scanner.nextLine()
+    println("--- APLIKASI PMB UMN ---")
 
     print("Masukkan Nama: ")
     val name = scanner.nextLine()
 
-    if (choice == 1) {
-        print("Masukkan Jurusan: ")
-        val major = scanner.nextLine()
-        val student = Student(nim, name, major)
-        println("Data dibuat untuk ${student.name}")
+    print("Masukkan NIM (Wajib 5 Karakter): ")
+    val nim = scanner.nextLine()
+
+    print("Masukkan Jurusan: ")
+    val major = scanner.nextLine()
+
+    println("Status: Pendaftaran Selesai.")
+    println()
+
+    print("Pilih Jalur (1. Reguler, 2. Umum): ")
+    val type = scanner.nextInt()
+    scanner.nextLine()
+
+    if (type == 1) {
+
+        val s1 = Student(name, nim, major)
+        println("LOG: Menggunakan constructor jalur reguler.")
+        println("Terdaftar di: ${s1.major} dengan GPA awal ${s1.gpa}")
+
+    } else if (type == 2) {
+
+        val s2 = Student(name, nim)
+        println("LOG: Menggunakan constructor jalur umum (Tanpa Jurusan).")
+        println("Terdaftar di: ${s2.major} dengan GPA awal ${s2.gpa}")
+
     } else {
-        val student = Student(nim, name)
-        println("Data dibuat untuk ${student.name} tanpa jurusan")
+        println("Pilihan ngawur, pendaftaran batal!")
     }
 }
+
 
