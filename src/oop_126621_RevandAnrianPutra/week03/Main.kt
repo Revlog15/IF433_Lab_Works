@@ -8,6 +8,14 @@ fun main() {
     println("Gaji: ${e.salary}")
     println("Net salary: ${e.netSalary}")
 
+    val w = Weapon("Pedang", 100)
+
+    w.damage = 9999
+
+
+    println("Damage: ${w.damage}")
+    println("Tier: ${w.tier}")
+
     e.increasePerformance()
     e.printStatus()
 }

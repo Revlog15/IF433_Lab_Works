@@ -21,4 +21,5 @@ class Weapon(val name: String, damageInit: Int) {
             damage > 500 -> "Epic"
             else -> "Common"
         }
+
 }
