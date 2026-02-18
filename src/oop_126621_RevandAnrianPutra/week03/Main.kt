@@ -16,6 +16,13 @@ fun main() {
     println("Damage: ${w.damage}")
     println("Tier: ${w.tier}")
 
+
+    val p = Player("Revand")
+
+    p.addXp(50)
+    p.addXp(60)
+
+
     e.increasePerformance()
     e.printStatus()
 }
