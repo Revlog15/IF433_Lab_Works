@@ -14,4 +14,13 @@ fun main() {
     e.accelerate()
     e.honk()
     e.openTrunk()
+
+    val m = Manager("Budi", 10000000)
+    m.work()
+    println(m.calculateBonus())
+
+    val d = Developer("Andi", 8000000, "Kotlin")
+    d.work()
+    println(d.calculateBonus())
+
 }
