@@ -1,6 +1,5 @@
 package oop_126621_RevandAnrianPutra.week04
 
-package oop_<nim>_<nama>.week04
 
 open class Vehicle(val brand: String) {
     var speed: Int = 0
