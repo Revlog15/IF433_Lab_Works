@@ -33,4 +33,19 @@ fun main() {
     println(mathHelper.hitungLuas(4))
     println(mathHelper.hitungLuas(5, 6))
     println(mathHelper.hitungLuas(7.0))
+
+
+    val eWallet = EWallet("Revand", 50000.0)
+    val creditCard = CreditCard("Revand", 100000.0)
+
+    val metodePembayaran: List<PaymentMethod> = listOf(eWallet, creditCard)
+
+    for (metode in metodePembayaran) {
+        metode.processPayment(75000.0)
+
+        if (metode is EWallet) {
+            metode.topUp(50000.0)
+            metode.processPayment(75000.0)
+        }
+    }
 }
