@@ -1,12 +1,12 @@
 package oop_126621_RevandAnrianPutra.week05
 
-class Dosen(nama: String) : Pegawai(nama) {
+class Dosen(nama: String, val nidn: String) : Pegawai(nama) {
 
     override fun bekerja() {
-        println("Dosen $nama sedang mengajar.")
+        println("$nama sedang menyiapkan materi perkuliahan dan merevisi RPKPS.")
     }
 
     fun mengajar() {
-        println("Dosen $nama mengajar di kelas.")
+        println("$nama sedang mengajar mahasiswa di kelas.")
     }
 }
