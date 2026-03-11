@@ -15,7 +15,7 @@ class SmartHomeHub {
         }
     }
 
-    fun activateSecurityMode() {
+    fun activateSecurityMode() {                    //disini
         for (device in devices) {
             if (device is Recordable) {
                 device.startRecord()
