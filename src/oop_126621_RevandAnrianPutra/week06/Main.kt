@@ -22,4 +22,15 @@ fun main() {
     val lamp = SmartLamp(id = "L01", name = "Ruang Tamu")
     val speaker = SmartSpeaker(id = "S01", name = "Google Nest Dapur")
     val cctv = SmartCCTV(id = "C01", name = "Ezviz Garasi")
+
+    val hub = SmartHomeHub()
+    hub.addDevice(lamp)
+    hub.addDevice(speaker)
+    hub.addDevice(cctv)
+
+    println("\n=== SECURITY MODE ===")
+    hub.activateSecurityMode()
+
+    println("\n=== TURN OFF ALL ===")
+    hub.turnOffAllSwitches()
 }
