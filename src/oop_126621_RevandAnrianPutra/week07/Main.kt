@@ -38,4 +38,8 @@ fun main() {
     }
     println(uiMessage)
 
+    println("\n=== TASK: TEST GAMEMANAGER SINGLETON ===")
+    GameManager.startGame()
+    GameManager.startGame()
+
 }
