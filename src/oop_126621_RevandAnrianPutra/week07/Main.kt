@@ -47,4 +47,13 @@ fun main() {
     val starterWeapon = Weapon.forgeStarterSword()
     println("Senjata awal: ${starterWeapon.item.name} | Damage: ${starterWeapon.item.damage} | Rarity: ${starterWeapon.item.rarity} | Durability: ${starterWeapon.durability}")
 
+
+    println("\n=== TASK: DATA CLASS COPY + EVENT DISPATCH ===")
+    val upgradedItem = starterWeapon.item.copy(damage = 25)
+    println("Senjata setelah upgrade di Blacksmith: $upgradedItem")
+
+    processEvent(BattleState.SafeZone)
+    processEvent(BattleState.MonsterEncounter("Goblin Nakal"))
+    processEvent(BattleState.LootDropped(upgradedItem))
+    processEvent(BattleState.GameOver("Terkena jebakan racun"))
 }
