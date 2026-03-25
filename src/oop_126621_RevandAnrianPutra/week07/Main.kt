@@ -42,4 +42,9 @@ fun main() {
     GameManager.startGame()
     GameManager.startGame()
 
+    println("\n=== TASK: SIMULATE RARITY AND FACTORY ===")
+    println("Drop chance LEGENDARY: ${ItemRarity.LEGENDARY.dropChance}%")
+    val starterWeapon = Weapon.forgeStarterSword()
+    println("Senjata awal: ${starterWeapon.item.name} | Damage: ${starterWeapon.item.damage} | Rarity: ${starterWeapon.item.rarity} | Durability: ${starterWeapon.durability}")
+
 }
