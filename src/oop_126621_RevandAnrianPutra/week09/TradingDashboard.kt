@@ -24,3 +24,6 @@ fun main() {
         .map { "LOSS [${it.pair} ${it.position}]: ${it.roe}% ROE (Lev: ${it.leverage}x)" }
 
     val uniquePairs = tradeHistory.map { it.pair }.toSet()
+
+    println("\n[ Top Performers ]")
+    topPerformersString.forEach { println(it) }
