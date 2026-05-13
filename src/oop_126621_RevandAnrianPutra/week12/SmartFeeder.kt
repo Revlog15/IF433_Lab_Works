@@ -27,11 +27,11 @@ fun main() {
 
     var currentKibbleStock = 50
 
-    runCatching {
+    try {
 
         dispenseKibble(
-            requestedGram = 30,
-            availableGram = 1000,
+            requestedGram = 80,
+            availableGram = currentKibbleStock,
             isJammed = false
         )
 
@@ -46,8 +46,18 @@ fun main() {
     } catch (e: Exception) {
 
         println("General Error: ${e.message}")
-    }finally {
+
+    } finally {
 
         println("Siklus pengecekan dispenser pagi selesai.")
+    }
+
+    runCatching {
+
+        dispenseKibble(
+            requestedGram = 30,
+            availableGram = 1000,
+            isJammed = false
+        )
     }
 }
