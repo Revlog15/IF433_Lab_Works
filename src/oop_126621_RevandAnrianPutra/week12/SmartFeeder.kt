@@ -27,11 +27,11 @@ fun main() {
 
     var currentKibbleStock = 50
 
-    try {
+    runCatching {
 
         dispenseKibble(
-            requestedGram = 80,
-            availableGram = currentKibbleStock,
+            requestedGram = 30,
+            availableGram = 1000,
             isJammed = false
         )
 
