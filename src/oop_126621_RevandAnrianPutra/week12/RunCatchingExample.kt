@@ -8,26 +8,28 @@ fun main() {
 
         "42X".toInt()
     }
-}
 
-val safeValue = result.getOrElse { -1 }
 
-println("Safe Value (getOrElse): $safeValue")
+    val safeValue = result.getOrElse { -1 }
 
-val recovered = result.recover { 0 }.getOrNull()
+    println("Safe Value (getOrElse): $safeValue")
 
-println("Recovered Value: $recovered")
+    val recovered = result.recover { 0 }.getOrNull()
 
-runCatching {
+    println("Recovered Value: $recovered")
 
-    "100".toInt()
+    runCatching {
 
-}.onSuccess { v ->
+        "100".toInt()
 
-    println("Berhasil dikonversi: $v")
+    }.onSuccess { v ->
 
-}.onFailure { e ->
+        println("Berhasil dikonversi: $v")
 
-    println("Gagal konversi: ${e.message}")
+    }.onFailure { e ->
+
+        println("Gagal konversi: ${e.message}")
+    }
+
 }
 
