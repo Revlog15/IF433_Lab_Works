@@ -16,6 +16,12 @@ class MemberDiscount : DiscountStrategy {
     }
 }
 
+class SeniorDiscount : DiscountStrategy {
+    override fun apply(price: Double): Double {
+        return price * 0.75
+    }
+}
+
 class SafeDiscountCalculator(
     private val strategy: DiscountStrategy
 ) {
@@ -27,7 +33,9 @@ class SafeDiscountCalculator(
 fun main() {
     val studentCalculator = SafeDiscountCalculator(StudentDiscount())
     val memberCalculator = SafeDiscountCalculator(MemberDiscount())
+    val seniorCalculator = SafeDiscountCalculator(SeniorDiscount())
 
     println(studentCalculator.calculate(100_000.0))
     println(memberCalculator.calculate(100_000.0))
+    println(seniorCalculator.calculate(100_000.0))
 }
