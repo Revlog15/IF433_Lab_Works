@@ -32,16 +32,33 @@ class EmailNotifier : NotificationService {
     }
 }
 
+interface PricingStrategy {
+    fun calculate(price: Double): Double
+}
+
+class RegularPricing : PricingStrategy {
+    override fun calculate(price: Double): Double {
+        return price
+    }
+}
+
+class VipPricing : PricingStrategy {
+    override fun calculate(price: Double): Double {
+        return price * 0.90
+    }
+}
+
 class SafeOrderProcessor(
     private val repo: OrderRepository,
     private val notifier: NotificationService
 ) {
-    fun processOrder(itemName: String, basePrice: Double, customerType: String) {
-        val finalPrice = when (customerType) {
-            "REGULAR" -> basePrice
-            "VIP" -> basePrice * 0.90
-            else -> basePrice
-        }
+    fun processOrder(
+        itemName: String,
+        basePrice: Double,
+        customerType: String,
+        pricingStrategy: PricingStrategy
+    ) {
+        val finalPrice = pricingStrategy.calculate(basePrice)
 
         val order = Order(
             itemName = itemName,
@@ -68,6 +85,14 @@ fun main() {
     processor.processOrder(
         itemName = "Keyboard Mechanical",
         basePrice = 500_000.0,
-        customerType = "VIP"
+        customerType = "VIP",
+        pricingStrategy = VipPricing()
+    )
+
+    processor.processOrder(
+        itemName = "Mouse Wireless",
+        basePrice = 250_000.0,
+        customerType = "REGULAR",
+        pricingStrategy = RegularPricing()
     )
 }
