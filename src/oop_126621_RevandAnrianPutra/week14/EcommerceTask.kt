@@ -2,11 +2,40 @@ package oop_126621_RevandAnrianPutra.week14
 
 import java.io.File
 
-class BadOrderProcessor {
+data class Order(
+    val itemName: String,
+    val finalPrice: Double,
+    val customerType: String
+)
 
-    // VIOLATION: Hardcoded file I/O, diskon, dan notifikasi dalam satu class
-    private val file = File("orders.csv")
+interface OrderRepository {
+    fun saveOrder(order: Order)
+}
 
+class CsvOrderRepository(
+    private val path: String = "orders.csv"
+) : OrderRepository {
+    override fun saveOrder(order: Order) {
+        File(path).printWriter().use { writer ->
+            writer.println("${order.itemName},${order.finalPrice},${order.customerType}")
+        }
+    }
+}
+
+interface NotificationService {
+    fun sendNotification(message: String)
+}
+
+class EmailNotifier : NotificationService {
+    override fun sendNotification(message: String) {
+        println("Email terkirim: $message")
+    }
+}
+
+class SafeOrderProcessor(
+    private val repo: OrderRepository,
+    private val notifier: NotificationService
+) {
     fun processOrder(itemName: String, basePrice: Double, customerType: String) {
         val finalPrice = when (customerType) {
             "REGULAR" -> basePrice
@@ -14,18 +43,27 @@ class BadOrderProcessor {
             else -> basePrice
         }
 
+        val order = Order(
+            itemName = itemName,
+            finalPrice = finalPrice,
+            customerType = customerType
+        )
+
         println("Memproses pesanan $itemName seharga $finalPrice")
 
-        // VIOLATION SRP/DIP: Menulis file langsung di class bisnis
-        file.appendText("$itemName,$finalPrice,$customerType\n")
-
-        // VIOLATION SRP/DIP: Notifikasi langsung hardcoded
-        println("Email terkirim: Pesanan $itemName Anda telah dikonfirmasi!")
+        repo.saveOrder(order)
+        notifier.sendNotification("Pesanan $itemName Anda telah dikonfirmasi!")
     }
 }
 
 fun main() {
-    val processor = BadOrderProcessor()
+    val repository = CsvOrderRepository()
+    val notifier = EmailNotifier()
+
+    val processor = SafeOrderProcessor(
+        repo = repository,
+        notifier = notifier
+    )
 
     processor.processOrder(
         itemName = "Keyboard Mechanical",
