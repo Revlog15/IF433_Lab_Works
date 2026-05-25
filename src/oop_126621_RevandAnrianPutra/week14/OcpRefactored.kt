@@ -15,3 +15,19 @@ class MemberDiscount : DiscountStrategy {
         return price * 0.85
     }
 }
+
+class SafeDiscountCalculator(
+    private val strategy: DiscountStrategy
+) {
+    fun calculate(price: Double): Double {
+        return strategy.apply(price)
+    }
+}
+
+fun main() {
+    val studentCalculator = SafeDiscountCalculator(StudentDiscount())
+    val memberCalculator = SafeDiscountCalculator(MemberDiscount())
+
+    println(studentCalculator.calculate(100_000.0))
+    println(memberCalculator.calculate(100_000.0))
+}
