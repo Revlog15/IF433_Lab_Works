@@ -1,5 +1,6 @@
 package oop_126621_RevandAnrianPutra.week14
 
+
 data class SafeUser(
     val name: String,
     val email: String,
@@ -18,13 +19,21 @@ class UserRepository {
     }
 }
 
+class EmailService {
+    fun sendWelcomeEmail(user: SafeUser) {
+        println("Welcome email -> ${user.email}")
+    }
+}
+
 fun main() {
     val user = SafeUser("Alice", "alice@mail.com", 20)
 
     val validator = UserValidator()
     val repository = UserRepository()
+    val emailService = EmailService()
 
     if (validator.validate(user)) {
         repository.save(user)
+        emailService.sendWelcomeEmail(user)
     }
 }
